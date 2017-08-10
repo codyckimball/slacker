@@ -3,8 +3,8 @@ const token = require('../slackTokens/cody.js').token
 function getStatus(){
         var now = new Date();
 
-        const weekDay = {0:"Recovering From Being Awesome All Week", 1:"Hailing From Farmington East", 2:"Remote and Productive",3:"No meetings...honestly trying to hide", 4:"Livin the Dream at Farmington East", 5:"Lehi and Chill", 6:"Leave me Alone!!!"}
-        return {"token":token, "status_text":weekDay[now.getDay()]}
+        const weekDay = {0:["Recovering From Being Awesome All Week",":aw_yeah:"], 1:["Hailing From FARMington East",":tractor:"], 2:["Remote and Productive (Lehi)",":house_with_garden:"],3:["No meetings...honestly trying to hide (Farmington)",":uh:"], 4:["Livin the Dream (Lehi)",":hmm:"], 5:["Lehi and Chill",":see_no_evil:"], 6:["Leave me Alone!!!",":gun:"]}
+        return {"token":token, "status_text":weekDay[now.getDay()][0], "status_emoji":weekDay[now.getDay()][1]}
 }
 
 function currentProcess(events){
@@ -15,7 +15,7 @@ function currentProcess(events){
             var startDate = new Date(Date.parse(events[i]["start"],"yyyy-MM-DD'T'HH:mm:ss'-06:00'"));
             var endDate = new Date(Date.parse(events[i]["end"],"yyyy-MM-DD'T'HH:mm:ss'-06:00'"))
             if(startDate < now && now < endDate){
-              response = {"token":token, 'status_text':events[i]["event"]}
+              response = {"token":token, 'status_text':events[i]["event"], "status_emoji":"meeting"}
             }
     }
   }
