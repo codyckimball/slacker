@@ -15,7 +15,10 @@ function currentProcess(events){
             var startDate = new Date(Date.parse(events[i]["start"],"yyyy-MM-DD'T'HH:mm:ss'-06:00'"));
             var endDate = new Date(Date.parse(events[i]["end"],"yyyy-MM-DD'T'HH:mm:ss'-06:00'"))
             if(startDate < now && now < endDate){
-              response = {"token":token, 'status_text':events[i]["event"], "status_emoji":"meeting"}
+              response = {"token":token, 'status_text':events[i]["event"], "status_emoji":":meeting:"}
+		if(response['status_text'].indexOf('OOO') !== -1){
+                	response['status_emoji'] = ":palm_tree:";
+            	}
             }
     }
   }
