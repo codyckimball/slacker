@@ -18,7 +18,12 @@ function currentProcess(events){
               response = {"token":token, 'status_text':events[i]["event"], "status_emoji":":meeting:"}
 		if(response['status_text'].indexOf('OOO') !== -1){
                 	response['status_emoji'] = ":palm_tree:";
-            	}
+            	} else if (response['status_text'].indexOf('Frontrunner') !== -1){
+			response['status_emoji'] = ":train:";
+		} else {
+			response['status_text'] = 'In Meeting: ' + response['status_text'];
+		}
+
             }
     }
   }
