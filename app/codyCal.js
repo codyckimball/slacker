@@ -149,7 +149,6 @@ function listEvents(auth) {
                 }
             }
             slacker = cody.currentProcess(eventResults);
-
             var token = slacker['token']
             delete slacker.token
             var yeps = encodeURIComponent(JSON.stringify(slacker))
