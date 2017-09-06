@@ -148,6 +148,7 @@ function listEvents(auth) {
                     })
                 }
             }
+//	    console.log(eventResults);
             slacker = cody.currentProcess(eventResults);
             var token = slacker['token']
             delete slacker.token

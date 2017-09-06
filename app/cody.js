@@ -9,6 +9,7 @@ function getStatus(){
 
 function currentProcess(events){
   var response = {};
+  var now = new Date();
   for (var i = 0; i < events.length; i++){
     if(events[i]["start"].indexOf('T') > -1 && events[i]["end"].indexOf('T') > -1){
 	    var now = new Date();
@@ -25,10 +26,10 @@ function currentProcess(events){
 		}
 
             }
-     } else if(events[i]["event"].indexOf('OOO') !== -1){
+     } else if(events[i]["event"].indexOf('OOO') !== -1 && new Date(events[i]["start"]).getDate() <= now.getDate() && new Date(events[i]["end"]).getDate() >= now.getDate()){
      		response = {"token":token, 'status_text':events[i]["event"], "status_emoji":":palm_tree:"}
 		break;
-     } 
+     }
   }
   if (response['status_text'] == undefined){
     response = getStatus();
